@@ -1,0 +1,125 @@
+╔═══════════════════════════════════════════════════════════════╗
+║         PC AUTO BACKUP USB - SETUP INSTRUCTIONS               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+✨ COMPLETE PC CLONE TO USB DRIVE! ✨
+
+───────────────────────────────────────────────────────────────
+
+📋 WHAT YOU GET:
+
+✅ All Documents, Photos, Videos
+✅ Desktop & Downloads
+✅ Browser bookmarks
+✅ System information
+✅ Installed programs list
+✅ Complete file inventory with MD5 hashes
+
+───────────────────────────────────────────────────────────────
+
+🚀 QUICK START (3 STEPS):
+
+STEP 1: Copy Files to USB
+   - Copy ALL files from this folder to USB drive root
+   - Files needed: backup.py, START_BACKUP.bat
+
+STEP 2: Install Python (if not installed)
+   - Download: https://python.org
+   - Install with "Add Python to PATH" ✅
+
+STEP 3: Run Backup
+   - Double-click START_BACKUP.bat
+   OR
+   - Right-click backup.py → Open with Python
+
+───────────────────────────────────────────────────────────────
+
+💻 ALTERNATIVE: CREATE EXE (No Python needed!)
+
+On any PC with Python:
+   pip install pyinstaller
+   pyinstaller --onefile backup.py
+
+Copy backup.exe to USB, double-click to run!
+
+───────────────────────────────────────────────────────────────
+
+📂 AFTER BACKUP:
+
+Your USB will have:
+   USB:\PC_Backup\Backup_YYYYMMDD_HHMMSS\
+      ├── Documents\
+      ├── Pictures\
+      ├── Videos\
+      ├── Desktop\
+      ├── Downloads\
+      ├── Music\
+      ├── Browser_Data\
+      ├── System_Info\
+      └── file_inventory.json
+
+───────────────────────────────────────────────────────────────
+
+⚙️ CUSTOMIZATION:
+
+Edit backup.py to change:
+   - USB drive letter (default: E:)
+   - Folders to backup
+   - Add custom paths
+   - Enable encryption
+
+See README.md for detailed instructions!
+
+───────────────────────────────────────────────────────────────
+
+🔒 SECURITY TIPS:
+
+1. Encrypt USB drive (BitLocker)
+2. Use strong passwords
+3. Store safely
+4. Regular backups (weekly)
+5. Test restore occasionally
+
+───────────────────────────────────────────────────────────────
+
+⏱️ ESTIMATED TIME:
+
+Small PC (< 50GB data): 10-30 minutes
+Medium PC (50-200GB): 30-90 minutes  
+Large PC (> 200GB): 1-3 hours
+
+Speed depends on:
+   - USB 3.0 vs USB 2.0
+   - Number of files
+   - File sizes
+
+───────────────────────────────────────────────────────────────
+
+✅ FEATURES:
+
+✓ Progress display
+✓ Error handling
+✓ MD5 verification
+✓ Folder structure preserved
+✓ No data loss
+✓ Safe & tested
+
+───────────────────────────────────────────────────────────────
+
+📞 NEED HELP?
+
+Read: README.md (detailed guide)
+Files: All in this folder
+Version: 1.0
+Created: Feb 8, 2026
+
+───────────────────────────────────────────────────────────────
+
+🎉 READY TO BACKUP!
+
+1. Copy to USB
+2. Run START_BACKUP.bat
+3. Wait for completion
+4. Done! 💾
+
+╚═══════════════════════════════════════════════════════════════╝

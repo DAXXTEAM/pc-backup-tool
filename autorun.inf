@@ -1,0 +1,7 @@
+[AutoRun]
+open=backup.exe
+icon=backup.ico
+label=PC Backup Drive
+action=Start PC Backup
+shellexecute=backup.exe
+UseAutoPlay=1
