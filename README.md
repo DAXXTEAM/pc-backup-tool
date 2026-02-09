@@ -1,287 +1,348 @@
-# 🔄 PC Auto Backup USB Tool
+# 🔄 PC Backup & Clone Tool
 
-**Apne PC ka complete backup pendrive mein!**
+**Complete PC backup solution with advanced features!**
 
----
-
-## ✨ FEATURES:
-
-✅ **Auto Backup** - Pendrive lagao, backup shuru!  
-✅ **Complete Data** - Documents, Photos, Videos, Desktop  
-✅ **Browser Data** - Chrome/Firefox bookmarks  
-✅ **System Info** - Complete PC details  
-✅ **File Inventory** - Sabhi files ki list + MD5 hash  
-✅ **Progress Display** - Real-time progress  
-✅ **Safe & Secure** - Koi data delete nahi hoga  
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)]()
+[![Python](https://img.shields.io/badge/python-3.7+-blue.svg)]()
 
 ---
 
-## 📋 BACKED UP DATA:
+## ✨ Features
 
-- 📄 Documents
-- 🖼️ Pictures
-- 🎬 Videos
-- 🖥️ Desktop files
-- 📥 Downloads
-- 🎵 Music
-- 🌐 Browser bookmarks
-- 💻 System information
-- 📝 Installed programs list
+### 📁 Basic Backup
+- Documents, Pictures, Videos
+- Desktop & Downloads
+- Music files
+- Browser bookmarks
+- System information
+- File inventory with MD5 hashes
+
+### ⚙️ Advanced Backup
+- Windows Registry
+- WiFi passwords
+- Browser data (passwords, history, cookies)
+- Installed applications list
+- System settings & configuration
+- Network configuration
+
+### 🔒 Security
+- Optional encryption (AES-256)
+- Password protection
+- Secure sensitive data
+
+### 🖥️ GUI Interface
+- Easy-to-use graphical interface
+- Progress tracking
+- One-click backup
+- Visual status updates
 
 ---
 
-## 🚀 HOW TO USE:
+## 🚀 Quick Start
 
-### **Method 1: Python Script (Recommended)**
+### Installation
 
-**Step 1: Install Python**
-- Download: https://python.org
-- Install with "Add to PATH" checked
-
-**Step 2: Copy to USB**
-```
-Copy these files to your USB drive:
-- backup.py
-- README.md
-```
-
-**Step 3: Run**
+**Option 1: Python Script**
 ```bash
-# Double-click or run:
+# Requirements
+Python 3.7+
+
+# Clone repository
+git clone https://github.com/YOUR_USERNAME/pc-backup-tool.git
+cd pc-backup-tool
+
+# Run
+python backup.py
+```
+
+**Option 2: GUI Version**
+```bash
+python backup_gui.py
+```
+
+**Option 3: Standalone EXE**
+```bash
+# Download from Releases
+# No Python required!
+backup.exe
+```
+
+---
+
+## 📖 Usage
+
+### Basic Backup
+```bash
+# Simple backup to E: drive
 python backup.py
 
-# Or specify USB drive:
-python backup.py D:
-python backup.py E:
+# Specify drive
+python backup.py F:
 ```
 
----
-
-### **Method 2: EXE File (No Python needed)**
-
-**Convert to EXE first:**
+### Advanced Backup
 ```bash
-pip install pyinstaller
-pyinstaller --onefile --icon=backup.ico backup.py
+# Advanced system backup
+python backup_advanced.py
+
+# With encryption
+python backup_advanced.py
+# Then enter password when prompted
 ```
 
-**Then:**
-1. Copy `backup.exe` to USB root
-2. Double-click to run!
-
----
-
-## 📁 OUTPUT STRUCTURE:
-
-```
-USB Drive (E:)
-├── backup.py          (The script)
-├── backup.exe         (Optional: compiled version)
-├── autorun.inf        (Auto-start config)
-└── PC_Backup/
-    └── Backup_20260208_191500/
-        ├── Documents/
-        ├── Pictures/
-        ├── Videos/
-        ├── Desktop/
-        ├── Downloads/
-        ├── Music/
-        ├── Browser_Data/
-        ├── System_Info/
-        │   └── system_info.json
-        ├── file_inventory.json
-        └── README.txt
+### GUI Mode
+```bash
+python backup_gui.py
 ```
 
 ---
 
-## ⚙️ CONFIGURATION:
+## 📂 Output Structure
 
-**Change USB Drive Letter:**
+```
+USB_Drive (E:\)
+├── PC_Backup\
+│   └── Backup_YYYYMMDD_HHMMSS\
+│       ├── Documents\
+│       ├── Pictures\
+│       ├── Videos\
+│       ├── Desktop\
+│       ├── Downloads\
+│       ├── Music\
+│       ├── Browser_Data\
+│       ├── System_Info\
+│       └── file_inventory.json
+│
+└── PC_Backup_Advanced\
+    └── Backup_YYYYMMDD_HHMMSS\
+        ├── SystemSettings\
+        ├── Registry\
+        ├── WiFiPasswords\
+        ├── BrowserData\
+        ├── Applications\
+        ├── NetworkConfig\
+        └── RESTORE.bat
+```
+
+---
+
+## ⚙️ Configuration
+
+### Change USB Drive
 ```python
-# Edit in backup.py line 240:
+# In backup.py, line 240:
 usb_drive = "E:"  # Change to your drive
 ```
 
-**Add More Folders:**
+### Add Custom Folders
 ```python
-# Edit folders_to_backup dictionary:
+# In backup.py, line 49:
 folders_to_backup = {
     'Documents': os.path.join(user_profile, 'Documents'),
-    'MyCustomFolder': 'C:\\Path\\To\\Folder',  # Add here!
+    'CustomFolder': 'C:\\Your\\Path\\Here',  # Add this
 }
+```
+
+### Enable Encryption
+```bash
+python backup_advanced.py
+# Choose 'y' for encryption
+# Enter password
 ```
 
 ---
 
-## 💡 ADVANCED FEATURES:
+## 🔧 Advanced Features
 
-### **1. Schedule Auto-Backup (Windows)**
-
-Create `.bat` file:
+### Scheduled Backup (Windows Task Scheduler)
 ```batch
 @echo off
 python E:\backup.py E:
 ```
 
-Task Scheduler:
-- Open Task Scheduler
-- Create Task
-- Trigger: On USB connect
-- Action: Run backup.bat
-
----
-
-### **2. Encrypted Backup**
-
-Add encryption (requires `cryptography`):
+### Cloud Upload Integration
 ```python
-from cryptography.fernet import Fernet
-
-# Generate key
-key = Fernet.generate_key()
-cipher = Fernet(key)
-
-# Encrypt files
-with open(file, 'rb') as f:
-    encrypted = cipher.encrypt(f.read())
-```
-
----
-
-### **3. Cloud Upload After Backup**
-
-Add at end of backup:
-```python
-# Upload to Google Drive/Dropbox
+# Add to backup.py
 import dropbox
 dbx = dropbox.Dropbox('YOUR_TOKEN')
-dbx.files_upload(file_data, '/backup.zip')
+dbx.files_upload(data, '/backup.zip')
+```
+
+### Network Backup
+```python
+# Backup over network
+usb_drive = "\\\\SERVER\\BackupShare"
 ```
 
 ---
 
-## 🔒 SECURITY TIPS:
+## 📋 Requirements
 
-1. **Encrypt USB drive** - BitLocker (Windows) / VeraCrypt
-2. **Password protect** - 7-Zip encrypted archive
-3. **Keep safe** - Store in secure location
-4. **Regular backups** - Weekly recommended
-5. **Test restore** - Verify backup works!
-
----
-
-## ⚠️ IMPORTANT NOTES:
-
-**What it DOES:**
-✅ Copy your personal files  
-✅ Preserve folder structure  
-✅ Create file inventory  
-✅ Save system info  
-
-**What it DOES NOT:**
-❌ Copy Windows system files  
-❌ Copy installed programs (only list)  
-❌ Copy passwords (only bookmarks)  
-❌ Modify or delete anything on PC  
-
----
-
-## 🐛 TROUBLESHOOTING:
-
-**"Permission Denied" error:**
-- Close programs using those files
-- Run as Administrator
-
-**"Drive not found":**
-- Check USB drive letter
-- Change in script
-
-**Slow backup:**
-- Normal for large files!
-- Wait patiently
-
-**Missing files:**
-- Check file_inventory.json
-- Some system files can't be copied
-
----
-
-## 📊 EXAMPLE OUTPUT:
-
-```
-============================================================
-🔄 PC AUTO BACKUP TOOL
-============================================================
-
-📍 Backup Location: E:\PC_Backup\Backup_20260208_191500
-
-✅ Backup folders created
-📋 Collecting system information...
-✅ System info saved
-
-📁 Backing up Documents...
-   Progress: 25.5% (255/1000)
-   Progress: 50.0% (500/1000)
-   Progress: 100.0% (1000/1000)
-✅ Documents backed up!
-
-📁 Backing up Pictures...
-✅ Pictures backed up!
-
-... (continues for all folders)
-
-🌐 Backing up browser data...
-✅ Chrome bookmarks backed up!
-
-📝 Creating file inventory...
-✅ Inventory created: 5,234 files, 12.5 GB
-
-============================================================
-✅ BACKUP COMPLETE!
-============================================================
-
-📁 Backup saved at: E:\PC_Backup\Backup_20260208_191500
-
-💾 You can now safely remove the USB drive!
-```
-
----
-
-## 🔄 TO RESTORE:
-
-1. Open backup folder on USB
-2. Copy folders back to original locations
-3. Check `file_inventory.json` for completeness
-4. Refer to `System_Info/system_info.json` for details
-
----
-
-## 📞 SUPPORT:
-
-Made by: DAXX  
-Contact: Your Telegram  
-Version: 1.0  
-Date: Feb 8, 2026  
-
----
-
-## ⚡ QUICK START COMMANDS:
+- **Python:** 3.7 or higher
+- **OS:** Windows (tested on Windows 10/11)
+- **Disk Space:** Depends on data size
+- **Optional:** `cryptography` for encryption
 
 ```bash
-# Simple backup
-python backup.py
-
-# Specify drive
-python backup.py F:
-
-# Create EXE
-pyinstaller --onefile backup.py
-
-# Test without USB
-python backup.py ./test_backup
+pip install cryptography
 ```
 
 ---
 
-**Happy Backing Up! 🎉**
+## 🛡️ Security & Privacy
+
+### What is Backed Up
+✅ Your personal files  
+✅ System configuration  
+✅ WiFi networks (with passwords)  
+✅ Browser bookmarks  
+
+### What is NOT Backed Up
+❌ Windows system files  
+❌ Program executables  
+❌ Temporary files  
+
+### Encryption
+- Uses AES-256 encryption
+- Password-based key derivation
+- Encrypts: WiFi passwords, browser data, registry
+
+---
+
+## 🐛 Troubleshooting
+
+### "Permission Denied"
+- Run as Administrator
+- Close programs using files
+
+### "Python not found"
+- Install Python from python.org
+- Check "Add Python to PATH"
+
+### "Module not found"
+```bash
+pip install cryptography
+```
+
+### Slow Backup
+- Use USB 3.0 port
+- Large files take time
+- Be patient!
+
+---
+
+## 📊 Examples
+
+### Basic Usage
+```bash
+# Backup everything to E: drive
+python backup.py E:
+
+# Output:
+✅ Documents backed up (1,234 files)
+✅ Pictures backed up (567 files)
+✅ Backup complete!
+```
+
+### Advanced Usage
+```bash
+# Full system clone with encryption
+python backup_advanced.py
+
+Enter USB drive letter (default E:): F:
+Enable encryption? (y/n): y
+Enter password: ********
+
+✅ Registry backed up
+✅ WiFi passwords extracted
+✅ Browser data backed up
+✅ Complete!
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions welcome!
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing`)
+3. Commit changes (`git commit -m 'Add feature'`)
+4. Push to branch (`git push origin feature/amazing`)
+5. Open Pull Request
+
+---
+
+## 📝 License
+
+MIT License - See [LICENSE](LICENSE) file
+
+---
+
+## 👤 Author
+
+**DAXX**
+
+- GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
+- Email: vclubtech@gmail.com
+
+---
+
+## ⭐ Show Your Support
+
+Give a ⭐️ if this project helped you!
+
+---
+
+## 📸 Screenshots
+
+### GUI Version
+![GUI Screenshot](screenshots/gui.png)
+
+### Command Line
+![CLI Screenshot](screenshots/cli.png)
+
+---
+
+## 🔄 Version History
+
+- **v1.0.0** (2026-02-09)
+  - Initial release
+  - Basic backup functionality
+  - Advanced system backup
+  - GUI interface
+  - Encryption support
+
+---
+
+## ⚠️ Disclaimer
+
+This tool is for personal backup use only. Always test backups before relying on them. The author is not responsible for data loss.
+
+---
+
+## 📚 Documentation
+
+For detailed documentation, see:
+- [Installation Guide](docs/INSTALLATION.md)
+- [User Manual](docs/USER_MANUAL.md)
+- [API Reference](docs/API.md)
+
+---
+
+## 🎯 Roadmap
+
+- [ ] Linux support
+- [ ] Mac support
+- [ ] Cloud storage integration
+- [ ] Incremental backups
+- [ ] Mobile app backup
+- [ ] Network backup
+- [ ] Auto-schedule
+
+---
+
+**Made with ❤️ by DAXX**
+
+**Star ⭐ this repo if you found it useful!**
